@@ -5,6 +5,10 @@ VisualStudioVersion = 12.0.21005.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HydroDataCenterWeb", "HydroDataCenterWeb\HydroDataCenterWeb.csproj", "{0F6818DB-45F5-4537-AF6D-D8FD6E31F509}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HydroDataCenterEntity", "HydroDataCenterEntity\HydroDataCenterEntity.csproj", "{99E6A27D-9621-458C-A572-5E8C3D575C52}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HydroDataCenterConsole", "HydroDataCenterConsole\HydroDataCenterConsole.csproj", "{B87D25DA-6A85-4284-A073-995108C26D3D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +19,14 @@ Global
 		{0F6818DB-45F5-4537-AF6D-D8FD6E31F509}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0F6818DB-45F5-4537-AF6D-D8FD6E31F509}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0F6818DB-45F5-4537-AF6D-D8FD6E31F509}.Release|Any CPU.Build.0 = Release|Any CPU
+		{99E6A27D-9621-458C-A572-5E8C3D575C52}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{99E6A27D-9621-458C-A572-5E8C3D575C52}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{99E6A27D-9621-458C-A572-5E8C3D575C52}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{99E6A27D-9621-458C-A572-5E8C3D575C52}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B87D25DA-6A85-4284-A073-995108C26D3D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B87D25DA-6A85-4284-A073-995108C26D3D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B87D25DA-6A85-4284-A073-995108C26D3D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B87D25DA-6A85-4284-A073-995108C26D3D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
