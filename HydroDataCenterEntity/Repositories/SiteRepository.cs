@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using HydroDataCenter.Common;
+using HydroDataCenterEntity.Common;
 using NHibernate;
 using NHibernate.Criterion;
 
@@ -68,6 +68,17 @@ namespace HydroDataCenterEntity.Repositories
                 ICriteria criteria = session.CreateCriteria(typeof(HydroDataCenterEntity.Models.Site));
                 criteria.AddOrder(Order.Asc("Code"));
                 return criteria.List<HydroDataCenterEntity.Models.Site>();
+            }
+        }
+
+        public List<HydroDataCenterEntity.Models.Site> GetAllAGK()
+        {
+            using (ISession session = NHibernateHelper.OpenSession())
+            {
+                ICriteria criteria = session.CreateCriteria(typeof(HydroDataCenterEntity.Models.Site));
+                criteria.AddOrder(Order.Asc("Code"));
+                criteria.Add(Restrictions.Eq("TypeID", 6));
+                return (List<HydroDataCenterEntity.Models.Site>) criteria.List<HydroDataCenterEntity.Models.Site>();
             }
         }
 

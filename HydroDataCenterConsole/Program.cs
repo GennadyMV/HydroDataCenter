@@ -19,7 +19,7 @@ namespace HydroDataCenterConsole
         {
             try
             {
-                HydroDataCenter.Common.NHibernateHelper.UpdateSchema();
+                HydroDataCenterEntity.Common.NHibernateHelper.UpdateSchema();
             }
             catch(Exception ex)
             {

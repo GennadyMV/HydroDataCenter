@@ -6,7 +6,7 @@ using NHibernate;
 using NHibernate.Cfg;
 using NHibernate.Context;
 
-namespace HydroDataCenter.Common
+namespace HydroDataCenterEntity.Common
 {
     public class NHibernateHelper
     {

@@ -1,5 +1,95 @@
-﻿@{
-    ViewBag.Title = "Index";
+﻿@model List<HydroDataCenterEntity.Models.Site>
+
+@{
+    ViewBag.Title = "Гидропосты";
 }
 
-<h2>Index</h2>
+<style>
+    .item {
+        border: dotted;        
+    }
+</style>
+
+<script>
+    $(document).ready(function () {
+        
+        console.log($(".item").length);
+
+        $('.item').each(function () {
+
+            $(this).addClass("upload");      
+            
+
+        });
+        setTimeout(explode, 2000);
+    });
+
+    function explode() {
+        if ($(".upload").length == 0) {
+
+            $('.item').each(function () {
+
+                $(this).addClass("upload");
+            });
+
+            setTimeout(explode, 1000 * 30);  //10 min
+        }
+
+        
+        var param = {
+            siteid: $(".upload").first().data("siteid"),
+            sitecode: $(".upload").first().data("sitecode"),
+            siteextid: $(".upload").first().data("siteextid"),
+            sitetypeid: $(".upload").first().data("sitetypeid"),
+            sitename: $(".upload").first().data("sitename")
+        };
+
+        
+        $.ajax({
+            cache: false,
+            url: '/Chart/Level',
+            data: param,
+            success: function (data) {
+                $('#site-' + param['siteid']).html(data);
+                $('#site-' + param['siteid']).removeClass("upload");
+                setTimeout(explode, 1000);  //1 sec
+            },
+            error: function (x, e, thrownError) {
+
+            }
+        });
+
+     
+    }
+    
+
+    Highcharts.setOptions({
+        lang: {
+            loading: 'Загрузка...',
+            months: ['Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь', 'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'],
+            weekdays: ['Воскресенье', 'Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота'],
+            shortMonths: ['Янв', 'Фев', 'Март', 'Апр', 'Май', 'Июнь', 'Июль', 'Авг', 'Сент', 'Окт', 'Нояб', 'Дек'],
+            exportButtonTitle: "Экспорт",
+            printButtonTitle: "Печать",
+            rangeSelectorFrom: "С",
+            rangeSelectorTo: "По",
+            rangeSelectorZoom: "Период",
+            downloadPNG: 'Скачать PNG',
+            downloadJPEG: 'Скачать JPEG',
+            downloadPDF: 'Скачать PDF',
+            downloadSVG: 'Скачать SVG',
+            printChart: 'Напечатать график'
+        }
+    });
+
+
+</script>
+
+<div class="container-fluid">
+    <div class="row">
+        @foreach (var item in Model)
+        {
+            <div id="site-@(item.ID)" class="col-sm-4 item" data-siteid="@item.ID" data-sitecode="@item.Code" data-siteextid="@item.ExtID" data-sitetypeid="@item.TypeID" data-sitename="@item.Name">@item.Name</div>
+        }
+    </div>
+</div>

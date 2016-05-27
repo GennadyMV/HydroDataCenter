@@ -21,7 +21,7 @@ namespace HydroDataCenterEntity.Models
         {
             this.created_at = DateTime.Now;
             this.updated_at = DateTime.Now;
-            HydroDataCenter.Common.IRepository<Site> repo = new Repositories.SiteRepository();
+            HydroDataCenterEntity.Common.IRepository<Site> repo = new Repositories.SiteRepository();
 
             repo.Save(this);
         }
@@ -29,7 +29,7 @@ namespace HydroDataCenterEntity.Models
         public virtual void Update()
         {
             this.updated_at = DateTime.Now;
-            HydroDataCenter.Common.IRepository<Site> repo = new Repositories.SiteRepository();
+            HydroDataCenterEntity.Common.IRepository<Site> repo = new Repositories.SiteRepository();
             repo.Update(this);
         }
         public static Site GetByCode(int SiteCode, int SiteType)
@@ -38,13 +38,23 @@ namespace HydroDataCenterEntity.Models
             return repo.GetByCode(SiteCode, SiteType);
         }
 
+        public static List<Site> GetAll()
+        {
+            HydroDataCenterEntity.Common.IRepository<Site> repo = new Repositories.SiteRepository();
+            return (List<Site>)repo.GetAll();
+        }
+        public static List<Site> GetAllAGK()
+        {
+            var repo = new Repositories.SiteRepository();
+            return (List<Site>)repo.GetAllAGK();
+        }
+
         static private void SupportSitesUpdateSite(HydroService.HydroServiceClient theHydro, int theType)
         {
             try
             {   
                 foreach (var site in theHydro.GetSiteList(theType))
                 {
-
                     HydroDataCenterEntity.Models.Site theSite = null;
                     int site_code = Convert.ToInt32(site.SiteCode);
                     theSite = Site.GetByCode(site_code, site.Type.Id);
