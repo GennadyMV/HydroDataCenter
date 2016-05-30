@@ -296,6 +296,8 @@
     <None Include="Service References\HydroService\HydroService4.xsd">
       <SubType>Designer</SubType>
     </None>
+    <Content Include="Views\Chart\AGK.cshtml" />
+    <Content Include="Views\Chart\HydroPost.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

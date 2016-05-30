@@ -12,6 +12,7 @@ namespace HydroDataCenterConsole
         {
             SupportUpdate();
             SupportSitesUpdate();
+            
             Console.ReadLine();
         }
 

@@ -1,0 +1,106 @@
+﻿
+
+<style>
+    #container-chart-@(ViewBag.SiteID)
+    {
+        height: 800px;
+    }
+</style>
+
+<div id="container-chart-@(ViewBag.SiteID)">
+    @ViewBag.SiteID.ToString()
+</div>
+
+<script>
+    Highcharts.setOptions({
+        lang: {
+            loading: 'Загрузка...',
+            months: ['Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь', 'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'],
+            weekdays: ['Воскресенье', 'Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота'],
+            shortMonths: ['Янв', 'Фев', 'Март', 'Апр', 'Май', 'Июнь', 'Июль', 'Авг', 'Сент', 'Окт', 'Нояб', 'Дек'],
+            exportButtonTitle: "Экспорт",
+            printButtonTitle: "Печать",
+            rangeSelectorFrom: "С",
+            rangeSelectorTo: "По",
+            rangeSelectorZoom: "Период",
+            downloadPNG: 'Скачать PNG',
+            downloadJPEG: 'Скачать JPEG',
+            downloadPDF: 'Скачать PDF',
+            downloadSVG: 'Скачать SVG',
+            printChart: 'Напечатать график'
+        }
+    });
+
+    $(function () {
+        $('#container-chart-@(ViewBag.SiteID)').highcharts({
+            chart: {
+                type: 'spline'
+            },
+            title: {
+                text: '@(ViewBag.SiteCode.ToString("00000")) - @(ViewBag.SiteName) @(ViewBag.CurrentLevelHydroPost) см'
+            },
+            xAxis: {
+                type: 'datetime',
+                dateTimeLabelFormats: { // don't display the dummy year
+                    hour: '%H:%M',
+                    month: '%e. %b',
+                    year: '%b'
+                },
+                title: {
+                    text: 'Дата (UTC)'
+                }
+            },
+            yAxis: {
+                title: {
+                    text: 'Уровень воды (см)'
+                },
+                tickInterval: 10
+            },
+            tooltip: {
+                headerFormat: '<b>{series.name}</b><br>',
+                pointFormat: '{point.x:%e. %b %H:%M}: {point.y:.2f} см'
+            },
+
+            plotOptions: {
+                spline: {
+                    marker: {
+                        enabled: true
+                    }
+                }
+            },
+
+            series: [{
+                name: '@(ViewBag.HydroPost.Name)',
+                color: '#00ABFF',
+                data: [
+                @(ViewBag.SeriesHydroPost)
+            ]
+        }, {
+            name: '@(ViewBag.SeriesCriteriaName01)',
+            color: '#00ABAA',
+            data: [
+                @(ViewBag.SeriesCriteria01)
+            ]
+        }, {
+            name: '@(ViewBag.SeriesCriteriaName02)',
+            color: '#00ABAA',
+            data: [
+                @(ViewBag.SeriesCriteria02)
+            ]
+        }, {
+            name: '@(ViewBag.SeriesCriteriaName03)',
+            color: '#00ABAA',
+            data: [
+                @(ViewBag.SeriesCriteria03)
+            ]
+        }, {
+            name: 'Прогноз',
+            color: '#0000DD',
+            data: [
+                @(ViewBag.SeriesForecast)
+            ]
+        }]
+    });
+});
+
+</script>
