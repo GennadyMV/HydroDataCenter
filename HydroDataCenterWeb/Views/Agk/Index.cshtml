@@ -1,12 +1,12 @@
 ﻿@model List<HydroDataCenterEntity.Models.Site>
 
 @{
-    ViewBag.Title = "Гидропосты";
+    ViewBag.Title = "АГК";
 }
 
 <style>
     .item {
-        border: dotted;        
+        
     }
 </style>
 
@@ -24,6 +24,18 @@
 
         });
         setTimeout(explode, 2000);
+
+
+
+        $('.item').mouseover(function () {
+            $(this).css('background-color', 'rgb(214,86,43)');
+        });
+
+
+        $('.item').mouseout(function () {
+            $(this).css('background-color', 'rgb(255,255,255)');
+        });
+
     });
 
     function explode() {
@@ -83,6 +95,7 @@
             printChart: 'Напечатать график'
         }
     });
+
 
 
 </script>

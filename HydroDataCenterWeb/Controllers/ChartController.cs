@@ -304,9 +304,7 @@ namespace HydroDataCenterWeb.Controllers
                             ViewBag.SeriesCriteriaName03 += criteria.Type.Comment;
                             break;
                     }                    
-                }
-
-
+                }                
                 
                 float forecast00 = 238;
                 float forecast01 = 217;

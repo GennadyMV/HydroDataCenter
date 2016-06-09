@@ -1,0 +1,29 @@
+﻿<nav class="navbar navbar-light bg-faded">
+    <a class="navbar-brand" href="#">АРМ &laquo;Гидропост&raquo;</a>
+    <ul class="nav navbar-nav">
+        
+        <li class="nav-item active">
+            <a class="nav-link" href="@Url.Action("Index","Hp")">ГП  
+                @if (@HttpContext.Current.Request.RequestContext.RouteData.Values["controller"].ToString() == "Hp")
+                {
+                    <span class="sr-only">(current)</span>
+                }
+            </a>
+        </li>
+
+        
+        <li class="nav-item">
+            <a class="nav-link" href="@Url.Action("Index", "Agk")">АГК 
+                @if (@HttpContext.Current.Request.RequestContext.RouteData.Values["controller"].ToString() == "Agk")
+                {
+                    <span class="sr-only">(current)</span>
+                }
+                
+            </a>
+        </li>
+    </ul>
+    <form class="form-inline pull-xs-right">
+        <input class="form-control" type="text" placeholder="@HttpContext.Current.Request.RequestContext.RouteData.Values["controller"].ToString()">
+        <button class="btn btn-success-outline" type="submit">Search</button>
+    </form>
+</nav>
