@@ -34,14 +34,14 @@ namespace HydroDataCenterWeb.Controllers
                 {
                     foreach (var item in ListResult)
                     {
-                        if (item.Value < -900)
+                        if (item.Value < -900 || item.Value > 1900)
                         {
                             continue;
                         }
                         
                         item.Value += Popravka(SiteCode, item.DateUTC);
 
-                        string series = String.Format("[Date.UTC({0}, {1}, {2}, {3}, 0, 0 ), {4}],", item.DateUTC.Year, item.DateUTC.Month-1, item.DateUTC.Day, item.DateUTC.Hour, item.Value.ToString().Replace(',','.'));
+                        string series = String.Format("[Date.UTC({0}, {1}, {2}, {3}, 0, 0 ), {4}],", item.Date.Year, item.Date.Month-1, item.Date.Day, item.Date.Hour, item.Value.ToString().Replace(',','.'));
                         ViewBag.SeriesAGK += series;
                         if (ViewBag.Min > (int) item.Value)
                         {
@@ -66,7 +66,7 @@ namespace HydroDataCenterWeb.Controllers
                 {
                     foreach (var item in ListResult)
                     {
-                        string series = String.Format("[Date.UTC({0}, {1}, {2}, {3}, 0, 0 ), {4}],", item.DateUTC.Year, item.DateUTC.Month-1, item.DateUTC.Day, item.DateUTC.Hour, item.Value.ToString().Replace(',','.'));
+                        string series = String.Format("[Date.UTC({0}, {1}, {2}, {3}, 0, 0 ), {4}],", item.Date.Year, item.Date.Month-1, item.Date.Day, item.Date.Hour, item.Value.ToString().Replace(',','.'));
                         ViewBag.SeriesHydroPost += series;
 
                         if (ViewBag.Min > (int)item.Value)
@@ -149,7 +149,7 @@ namespace HydroDataCenterWeb.Controllers
             {
                 var theHydro = new HydroDataCenterEntity.HydroService.HydroServiceClient();
 
-                DateTime dateEnd = DateTime.UtcNow;
+                DateTime dateEnd = DateTime.Now;
                 DateTime dateBgn = dateEnd.AddDays(-30);
 
                 ViewBag.Min = 10999;
@@ -162,14 +162,14 @@ namespace HydroDataCenterWeb.Controllers
                 {
                     foreach (var item in ListResult)
                     {
-                        if (item.Value < -900)
+                        if (item.Value < -900 || item.Value > 900)
                         {
                             continue;
                         }
 
-                        item.Value += Popravka(SiteCode, item.DateUTC);
+                        item.Value += Popravka(SiteCode, item.Date);
 
-                        string series = String.Format("[Date.UTC({0}, {1}, {2}, {3}, 0, 0 ), {4}],", item.DateUTC.Year, item.DateUTC.Month - 1, item.DateUTC.Day, item.DateUTC.Hour, item.Value.ToString().Replace(',', '.'));
+                        string series = String.Format("[Date.UTC({0}, {1}, {2}, {3}, 0, 0 ), {4}],", item.Date.Year, item.Date.Month - 1, item.Date.Day, item.Date.Hour, item.Value.ToString().Replace(',', '.'));
                         ViewBag.SeriesAGK += series;
                         if (ViewBag.Min > (int)item.Value)
                         {
@@ -194,7 +194,7 @@ namespace HydroDataCenterWeb.Controllers
                 {
                     foreach (var item in ListResult)
                     {
-                        string series = String.Format("[Date.UTC({0}, {1}, {2}, {3}, 0, 0 ), {4}],", item.DateUTC.Year, item.DateUTC.Month - 1, item.DateUTC.Day, item.DateUTC.Hour, item.Value.ToString().Replace(',', '.'));
+                        string series = String.Format("[Date.UTC({0}, {1}, {2}, {3}, 0, 0 ), {4}],", item.Date.Year, item.Date.Month - 1, item.Date.Day, item.Date.Hour, item.Value.ToString().Replace(',', '.'));
                         ViewBag.SeriesHydroPost += series;
 
                         if (ViewBag.Min > (int)item.Value)

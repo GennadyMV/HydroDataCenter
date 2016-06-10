@@ -5,8 +5,25 @@
 }
 
 <style>
+    .warpitem {
+        height: auto;
+        width: 33%;
+        float: left;
+        position: relative;
+    }
     .item {
-        
+        height: 100%;
+        width: 100%;
+        float: left;
+    }
+    .itemtool {
+        position:absolute;
+        left:0;
+        top:0;
+        z-index:1000;
+    }
+
+    .itembtn {
     }
 </style>
 
@@ -100,12 +117,34 @@
 
 </script>
 
+<script src="https://use.fonticons.com/5a6dd875.js"></script>
 
 <div class="container-fluid">
-    <div class="row">
+    @*<div class="row">
         @foreach (var item in Model)
         {
             <div id="site-@(item.ID)" class="col-sm-4 item" data-siteid="@item.ID" data-sitecode="@item.Code" data-siteextid="@item.ExtID" data-sitetypeid="@item.TypeID" data-sitename="@item.Name">@item.Name</div>
         }
-    </div>
+    </div>*@
+
+    @foreach (var item in Model)
+    {
+        <div class="warpitem">
+            <div class="itemtool">
+                <div class="dropdown">                    
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                        <a class="dropdown-item" href="@Url.Action("AGK", "Chart", new  { SiteCode=item.Code })" target="_blank">Открыть</a>
+                        @*<a class="dropdown-item" href="#">Another action</a>
+                        <a class="dropdown-item" href="#">Something else here</a>*@
+                    </div>
+                    <button class="btn btn-secondary" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="false" aria-expanded="false">
+                        +
+                    </button>
+                </div>
+            </div>
+            <div id="site-@(item.ID)" class="item" data-siteid="@item.ID" data-sitecode="@item.Code" data-siteextid="@item.ExtID" data-sitetypeid="@item.TypeID" data-sitename="@item.Name">@item.Name</div>
+        </div>
+    }
+
 </div>
+
