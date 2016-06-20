@@ -1,6 +1,10 @@
-﻿
-
-<style>
+﻿@{
+    Layout = "";
+}
+<div id="container-chart-@(ViewBag.SiteID)">
+    @ViewBag.SiteID.ToString()
+</div>
+@*<style>
     #container-chart-@(ViewBag.SiteID)
     {
         height: 800px;
@@ -9,7 +13,7 @@
 
 <div id="container-chart-@(ViewBag.SiteID)">
     @ViewBag.SiteID.ToString()
-</div>
+</div>*@
 
 <script>
     Highcharts.setOptions({
@@ -92,12 +96,6 @@
             color: '#00ABAA',
             data: [
                 @(ViewBag.SeriesCriteria03)
-            ]
-        }, {
-            name: 'Прогноз',
-            color: '#0000DD',
-            data: [
-                @(ViewBag.SeriesForecast)
             ]
         }]
     });

@@ -1,0 +1,48 @@
+﻿@model HydroDataCenterWeb.Models.DataValues
+@{
+    ViewBag.Title = @Model.SiteCode + " Данные измерений";
+}
+
+<h2>Данные измерений</h2>
+
+<h4>@Model.Control</h4>
+<table class="table table-hover table-bordered">
+    <thead>
+        <tr>
+            <th>Дата ХАБ</th>
+            <th>Дата ВСВ</th>
+            <th>АГК</th>
+            <th>Гидропост</th>
+            <th>Дельта</th>
+            <th>Процент</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var value in @Model.theValueList)
+        {
+            <tr>
+
+                <td>
+                    @value.Date.ToString()
+                </td>
+
+                <td>
+                    @value.DateUTC.ToString()
+                </td>
+                <td>
+                    @value.valueAgk_
+                </td>
+                <td>
+                    @value.valueHydroPost_
+                </td>
+                <td>
+                    @value.delta_
+                </td>
+
+                <td>
+                    @value.percent_
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

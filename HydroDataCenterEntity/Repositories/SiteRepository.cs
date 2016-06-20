@@ -78,7 +78,17 @@ namespace HydroDataCenterEntity.Repositories
                 ICriteria criteria = session.CreateCriteria(typeof(HydroDataCenterEntity.Models.Site));
                 criteria.AddOrder(Order.Asc("Code"));
                 criteria.Add(Restrictions.Eq("TypeID", 6));
-                return (List<HydroDataCenterEntity.Models.Site>) criteria.List<HydroDataCenterEntity.Models.Site>();
+                return (List<HydroDataCenterEntity.Models.Site>)criteria.List<HydroDataCenterEntity.Models.Site>();
+            }
+        }
+        public List<HydroDataCenterEntity.Models.Site> GetAllHydroPost()
+        {
+            using (ISession session = NHibernateHelper.OpenSession())
+            {
+                ICriteria criteria = session.CreateCriteria(typeof(HydroDataCenterEntity.Models.Site));
+                criteria.AddOrder(Order.Asc("Code"));
+                criteria.Add(Restrictions.Eq("TypeID", 2));
+                return (List<HydroDataCenterEntity.Models.Site>)criteria.List<HydroDataCenterEntity.Models.Site>();
             }
         }
 

@@ -13,6 +13,7 @@
     <property name="TypeID" not-null="true"  unique-key="siteuq"/>
     <property name="TypeName" not-null="true" />
     <property name="TypeNameShort" not-null="true" />
+    <property name="ControlProcent" />
     
   </class>
 </hibernate-mapping>

@@ -54,6 +54,7 @@
             success: function (data) {
                 $('#site-' + param['siteid']).html(data);
                 $('#site-' + param['siteid']).removeClass("upload");
+                    
                 setTimeout(explode, 1000);  //1 sec
             },
             error: function (x, e, thrownError) {

@@ -13,7 +13,8 @@ namespace HydroDataCenterWeb.Controllers
 
         public ActionResult Index()
         {
-            return View();
+            List<HydroDataCenterEntity.Models.Site> theSiteList = HydroDataCenterEntity.Models.Site.GetAllHydroPost();
+            return View(theSiteList);
         }
 
     }
